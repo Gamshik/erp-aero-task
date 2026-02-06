@@ -22,7 +22,12 @@
     "paths": {
       "@app": ["app"],
       "@config": ["config/index"],
+      "@common": ["shared/common/index"],
       "@db": ["infrastructure/db/index"],
+      "@user": ["modules/user/index"],
+      "@auth": ["modules/auth/index"],
+      "@utils": ["shared/utils/index"],
+      "@middlewares": ["shared/middlewares/index"],
       "@modules/*": ["modules/*"],
       "@shared/*": ["shared/*"]
     }

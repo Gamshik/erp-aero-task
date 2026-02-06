@@ -1,17 +1,17 @@
-import { env } from "@config";
+import { appConfig } from "@config";
 import { createApp } from "@app";
 import { checkDbConnection, initDatabase, pool } from "@db";
 
 async function start() {
   try {
-    if (env.nodeEnv === "development") await initDatabase();
+    if (appConfig.env === "development") await initDatabase();
 
     await checkDbConnection();
 
     const app = createApp();
 
-    const server = app.listen(env.port, () => {
-      console.log(`Server started on port ${env.port}`);
+    const server = app.listen(appConfig.port, () => {
+      console.log(`Server started on port ${appConfig.port}`);
     });
 
     const shutdown = async (signal: string) => {
