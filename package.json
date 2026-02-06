@@ -1,0 +1,60 @@
+{
+  "name": "erp-aero-task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cross-env DOTENV_CONFIG_PATH=.env.development nodemon -r dotenv/config -r tsconfig-paths/register --exec ts-node src/server.ts",
+    "start": "cross-env DOTENV_CONFIG_PATH=.env.production node -r dotenv/config -r module-alias/register dist/server.js",
+    "build": "tsc",
+    "migrate:dev": "cross-env DOTENV_CONFIG_PATH=.env.development npx knex migrate:latest --knexfile src/infrastructure/db/knexfile.ts",
+    "rollback:dev": "cross-env DOTENV_CONFIG_PATH=.env.development npx knex migrate:rollback --knexfile src/infrastructure/db/knexfile.ts",
+    "migrate:prod": "cross-env DOTENV_CONFIG_PATH=.env.production npx knex migrate:latest --knexfile src/infrastructure/db/knexfile.ts",
+    "rollback:prod": "cross-env DOTENV_CONFIG_PATH=.env.production npx knex migrate:rollback --knexfile src/infrastructure/db/knexfile.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gamshik/erp-aero-task.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Gamshik/erp-aero-task/issues"
+  },
+  "homepage": "https://github.com/Gamshik/erp-aero-task#readme",
+  "_moduleAliases": {
+    "@app": "dist/app",
+    "@config": "dist/config/index",
+    "@db": "dist/infrastructure/db/index",
+    "@modules": "dist/modules",
+    "@shared": "dist/shared"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.2.4",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "knex": "^3.1.0",
+    "module-alias": "^2.3.4",
+    "mysql2": "^3.16.3",
+    "uuid": "^13.0.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/knex": "^0.15.2",
+    "@types/node": "^25.2.1",
+    "@typescript-eslint/eslint-plugin": "^8.54.0",
+    "@typescript-eslint/parser": "^8.54.0",
+    "cross-env": "^10.1.0",
+    "eslint": "^9.39.2",
+    "nodemon": "^3.1.11",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.9.3"
+  }
+}
