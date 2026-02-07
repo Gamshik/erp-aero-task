@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import { authConfig } from "@config";
 import { TokenRepositoryPort } from "@auth";
+import { IJwtPayload } from "@common";
 
 export const authMiddleware =
   (tokenRepository: TokenRepositoryPort) =>
@@ -13,10 +14,10 @@ export const authMiddleware =
     const accessToken = authHeader.split(" ")[1] ?? "";
 
     try {
-      const decoded = jwt.verify(accessToken, authConfig.accessSecret) as {
-        sub: string;
-        jti: string;
-      };
+      const decoded = jwt.verify(
+        accessToken,
+        authConfig.accessSecret,
+      ) as IJwtPayload;
 
       const session = await tokenRepository.findById(decoded.jti);
 
