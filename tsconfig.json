@@ -24,12 +24,13 @@
       "@config": ["config/index"],
       "@common": ["shared/common/index"],
       "@db": ["infrastructure/db/index"],
+      "@multer": ["infrastructure/multer/index"],
+      "@file-storage": ["infrastructure/file-storage/index"],
       "@user": ["modules/user/index"],
       "@auth": ["modules/auth/index"],
+      "@file": ["modules/file/index"],
       "@utils": ["shared/utils/index"],
-      "@middlewares": ["shared/middlewares/index"],
-      "@modules/*": ["modules/*"],
-      "@shared/*": ["shared/*"]
+      "@middlewares": ["shared/middlewares/index"]
     }
   },
   "include": ["src/**/*"],

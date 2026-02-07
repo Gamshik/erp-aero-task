@@ -1,4 +1,4 @@
-import { TokenRepositoryPort, Token } from "@modules/auth"; // через алиас
+import { TokenRepositoryPort, Token } from "@auth"; // через алиас
 import { pool } from "../mysql";
 import { ResultSetHeader, RowDataPacket } from "mysql2";
 
