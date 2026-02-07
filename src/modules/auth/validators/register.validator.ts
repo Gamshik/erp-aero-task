@@ -1,5 +1,5 @@
 import { IBaseValidator } from "@common";
-import { UserPort, UserRepositoryPort } from "@user";
+import { UserRepositoryPort } from "@user";
 
 export class RegisterValidator implements IBaseValidator {
   constructor(private readonly userRepository: UserRepositoryPort) {}

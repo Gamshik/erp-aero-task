@@ -14,7 +14,7 @@ export class FileStorageService implements FileStoragePort {
     try {
       await fs.access(filePath);
       await fs.unlink(filePath);
-    } catch (error: any) {
+    } catch {
       console.warn(
         `File ${filename} not found on disk, skipping physical delete.`,
       );

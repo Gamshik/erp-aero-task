@@ -15,7 +15,7 @@ export class AuthController {
 
       this.setRefreshCookie(res, tokens);
       this.sendTokensResponse(res, tokens);
-    } catch (error: any) {
+    } catch {
       res.status(500).json({ error: "Internal server error" });
     }
   };
@@ -34,8 +34,7 @@ export class AuthController {
 
       this.setRefreshCookie(res, tokens);
       this.sendTokensResponse(res, tokens);
-    } catch (error: any) {
-      console.error(error);
+    } catch {
       res.status(500).json({ error: "Internal server error" });
     }
   };
@@ -54,7 +53,7 @@ export class AuthController {
 
       this.setRefreshCookie(res, tokens);
       this.sendTokensResponse(res, tokens);
-    } catch (error: any) {
+    } catch {
       res.status(500).json({ error: "Internal server error" });
     }
   };
@@ -67,7 +66,7 @@ export class AuthController {
 
       res.clearCookie("refreshToken");
       res.status(200).json({ message: "Logged out successfully" });
-    } catch (error: any) {
+    } catch {
       res.status(404).json({ error: "Invalid refresh token" });
     }
   };

@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { ZodObject } from "zod";
+import { ZodError, ZodObject } from "zod";
 
 export const validateMiddleware =
   (schema: ZodObject) =>
@@ -11,7 +11,13 @@ export const validateMiddleware =
         params: req.params,
       });
       return next();
-    } catch (error: any) {
-      return res.status(400).json(error.format());
+    } catch (error: unknown) {
+      if (error instanceof ZodError) {
+        return res.status(400).json({
+          message: "Validation failed",
+          details: error.format(),
+        });
+      }
+      return res.status(500).json({ error: "Internal server error" });
     }
   };

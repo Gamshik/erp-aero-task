@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
     "dev": "cross-env DOTENV_CONFIG_PATH=.env.development nodemon -r dotenv/config -r tsconfig-paths/register --exec ts-node src/server.ts",
     "start": "cross-env DOTENV_CONFIG_PATH=.env.production node -r dotenv/config -r module-alias/register dist/server.js",
     "build": "tsc",
@@ -53,6 +55,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.2",
     "@types/bcrypt": "^6.0.0",
     "@types/cookie-parser": "^1.4.10",
     "@types/cors": "^2.8.19",
@@ -68,6 +71,7 @@
     "nodemon": "^3.1.11",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.54.0"
   }
 }

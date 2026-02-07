@@ -26,8 +26,10 @@ export class FileController {
       });
 
       res.status(201).json(file);
-    } catch (error: any) {
-      res.status(500).json({ error: error.message });
+    } catch (error: unknown) {
+      const message =
+        error instanceof Error ? error.message : "Internal server error";
+      res.status(500).json({ error: message });
     }
   };
 
@@ -38,8 +40,10 @@ export class FileController {
 
       const files = await this.filePort.list(page, listSize);
       res.status(200).json(files);
-    } catch (error: any) {
-      res.status(500).json({ error: error.message });
+    } catch (error: unknown) {
+      const message =
+        error instanceof Error ? error.message : "Internal server error";
+      res.status(500).json({ error: message });
     }
   };
 
@@ -50,7 +54,7 @@ export class FileController {
 
       const file = await this.filePort.getInfo(id);
       res.status(200).json(file);
-    } catch (error: any) {
+    } catch {
       res.status(404).json({ error: "File not found" });
     }
   };
@@ -64,7 +68,7 @@ export class FileController {
       const absolutePath = this.fileStoragePort.getAbsolutePath(file.path);
 
       res.download(absolutePath, file.name);
-    } catch (error: any) {
+    } catch {
       res.status(404).json({ error: "File not found" });
     }
   };
@@ -79,8 +83,10 @@ export class FileController {
 
       await this.filePort.delete(id, userId);
       res.status(200).json({ message: "File deleted successfully" });
-    } catch (error: any) {
-      res.status(400).json({ error: error.message });
+    } catch (error: unknown) {
+      const message =
+        error instanceof Error ? error.message : "Internal server error";
+      res.status(500).json({ error: message });
     }
   };
 
@@ -106,8 +112,10 @@ export class FileController {
       });
 
       res.status(200).json(updatedFile);
-    } catch (error: any) {
-      res.status(400).json({ error: error.message });
+    } catch (error: unknown) {
+      const message =
+        error instanceof Error ? error.message : "Internal server error";
+      res.status(500).json({ error: message });
     }
   };
 }

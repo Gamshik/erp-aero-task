@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 /// <reference path="./types/express.d.ts" />
 
 import { appConfig } from "@config";
