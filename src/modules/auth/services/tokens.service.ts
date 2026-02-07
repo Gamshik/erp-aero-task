@@ -5,12 +5,21 @@ import jwt from "jsonwebtoken";
 import ms from "ms";
 
 export class TokensService {
-  generateToken(userId: string): TokensValue {
+  generateToken(userId: string, sessionId: string): TokensValue {
     const expiresIn = authConfig.accessTtl;
-    const accessToken = jwt.sign({ sub: userId }, authConfig.accessSecret, {
-      expiresIn,
-    });
     const refreshToken = uuidv4();
-    return new TokensValue(accessToken, refreshToken, ms(expiresIn));
+    const accessToken = jwt.sign(
+      { sub: userId, jti: sessionId },
+      authConfig.accessSecret,
+      {
+        expiresIn,
+      },
+    );
+    return new TokensValue(
+      accessToken,
+      refreshToken,
+      ms(expiresIn),
+      ms(authConfig.refreshTtl),
+    );
   }
 }

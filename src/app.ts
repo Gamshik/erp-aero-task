@@ -1,7 +1,8 @@
 import express from "express";
+import cookieParser from "cookie-parser";
 import cors from "cors";
 import { TokenRepository, UserRepository } from "@db";
-import { validateMiddleware } from "@middlewares";
+import { authMiddleware, validateMiddleware } from "@middlewares";
 import {
   AuthController,
   AuthFacade,
@@ -12,6 +13,9 @@ import {
   TokensService,
   RegisterValidator,
   CreateTokensUseCase,
+  RefreshTokensUseCase,
+  loginSchema,
+  LogoutUseCase,
 } from "@auth";
 import { CreateUseCase, UserFacade } from "@user";
 
@@ -20,6 +24,7 @@ export function createApp() {
 
   app.use(cors({ origin: "*" }));
   app.use(express.json());
+  app.use(cookieParser());
 
   // --- ИНИЦИАЛИЗАЦИЯ ЗАВИСИМОСТЕЙ (DI) ---
 
@@ -45,25 +50,34 @@ export function createApp() {
     passwordHashingService,
     registerValidator,
   );
+  const refreshTokensUseCase = new RefreshTokensUseCase(
+    tokenRepository,
+    createTokensUseCase,
+  );
+  const logoutUseCase = new LogoutUseCase(tokenRepository);
 
   const authFacade = new AuthFacade(
     loginUseCase,
     registerUseCase,
     createTokensUseCase,
+    refreshTokensUseCase,
+    logoutUseCase,
   );
 
   const authController = new AuthController(authFacade);
 
   // --- РОУТЫ ---
 
+  app.post("/signin", validateMiddleware(loginSchema), authController.login);
+  app.post("/signin/new_token", authController.refresh);
   app.post(
     "/signup",
     validateMiddleware(registerSchema),
     authController.register,
   );
-  app.get("/health", (_req, res) => {
-    res.json({ status: "ok" });
-  });
+
+  app.get("/info", authMiddleware(tokenRepository), authController.info);
+  app.get("/logout", authMiddleware(tokenRepository), authController.logout);
 
   return app;
 }

@@ -13,5 +13,10 @@ export abstract class AuthPort {
     device: string | null,
   ): Promise<TokensValue | null>;
 
-  //   abstract logout(token: string): Promise<void>;
+  abstract refresh(
+    oldRefreshToken: string,
+    device: string | null,
+  ): Promise<TokensValue>;
+
+  abstract logout(refreshToken: string): Promise<void>;
 }

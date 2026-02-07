@@ -3,6 +3,7 @@ import { TokensService } from "../services";
 import { TokenRepositoryPort } from "../ports";
 import { Token, TokensValue } from "../domain";
 import { authConfig } from "@config";
+import { v4 as uuidv4 } from "uuid";
 import ms from "ms";
 
 export class CreateTokensUseCase implements IBaseUsecase {
@@ -12,9 +13,11 @@ export class CreateTokensUseCase implements IBaseUsecase {
   ) {}
 
   async execute(userId: string, device: string | null): Promise<TokensValue> {
-    const tokens = this.tokensService.generateToken(userId);
+    const sessionId = uuidv4();
+    const tokens = this.tokensService.generateToken(userId, sessionId);
     await this.tokenRepository.create(
       new Token({
+        id: sessionId,
         userId: userId,
         refreshToken: tokens.refreshToken,
         device: device,

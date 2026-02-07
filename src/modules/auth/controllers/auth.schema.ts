@@ -14,3 +14,10 @@ export const registerSchema = z.object({
     password: z.string().min(6, "Password too weak"),
   }),
 });
+
+export const loginSchema = z.object({
+  body: z.object({
+    id: identifierSchema,
+    password: z.string(),
+  }),
+});
