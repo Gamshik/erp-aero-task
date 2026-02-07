@@ -1,4 +1,5 @@
 import { IBaseUsecase } from "@common";
+
 import { User } from "../domain";
 import { UserRepositoryPort } from "../ports";
 

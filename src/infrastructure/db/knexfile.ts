@@ -1,6 +1,8 @@
 import path from "path";
-import type { Knex } from "knex";
+
 import { dbEnv } from "./config";
+
+import type { Knex } from "knex";
 
 const baseConfig: Knex.Config = {
   client: "mysql2",

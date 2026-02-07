@@ -1,7 +1,8 @@
 import { IBaseUsecase } from "@common";
 import { User, UserPort } from "@user";
-import { RegisterValidator } from "../validators";
+
 import { PasswordHashingService } from "../services";
+import { RegisterValidator } from "../validators";
 
 export class RegisterUseCase implements IBaseUsecase {
   constructor(

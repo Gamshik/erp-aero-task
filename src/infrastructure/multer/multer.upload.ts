@@ -1,8 +1,10 @@
-import multer from "multer";
-import path from "path";
-import { v4 as uuidv4 } from "uuid";
-import { fileConfig } from "@config";
 import fs from "fs";
+import path from "path";
+
+import { fileConfig } from "@config";
+import multer from "multer";
+import { v4 as uuidv4 } from "uuid";
+
 
 const uploadDir = path.resolve(process.cwd(), fileConfig.uploadFolder);
 

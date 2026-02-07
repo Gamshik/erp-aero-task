@@ -1,6 +1,7 @@
-import mysql from "mysql2/promise";
-import { dbEnv } from "./config/dbEnv";
 import Knex from "knex";
+import mysql from "mysql2/promise";
+
+import { dbEnv } from "./config/dbEnv";
 import knexConfig from "./knexfile";
 
 export async function initDatabase() {

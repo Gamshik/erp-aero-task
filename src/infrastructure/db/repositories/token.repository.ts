@@ -1,6 +1,7 @@
 import { TokenRepositoryPort, Token } from "@auth"; // через алиас
-import { pool } from "../mysql";
 import { ResultSetHeader, RowDataPacket } from "mysql2";
+
+import { pool } from "../mysql";
 
 export class TokenRepository implements TokenRepositoryPort {
   async create(token: Token): Promise<void> {

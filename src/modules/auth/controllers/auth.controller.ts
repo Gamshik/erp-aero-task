@@ -1,7 +1,8 @@
-import { Request, Response } from "express";
-import { AuthPort } from "../ports";
-import { TokensValue } from "../domain";
 import { appConfig } from "@config";
+import { Request, Response } from "express";
+
+import { TokensValue } from "../domain";
+import { AuthPort } from "../ports";
 
 export class AuthController {
   constructor(private authPort: AuthPort) {}

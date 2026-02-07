@@ -1,8 +1,8 @@
-import { Request, Response, NextFunction } from "express";
-import jwt from "jsonwebtoken";
-import { authConfig } from "@config";
 import { TokenRepositoryPort } from "@auth";
 import { IJwtPayload } from "@common";
+import { authConfig } from "@config";
+import { Request, Response, NextFunction } from "express";
+import jwt from "jsonwebtoken";
 
 export const authMiddleware =
   (tokenRepository: TokenRepositoryPort) =>

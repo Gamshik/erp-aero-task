@@ -1,4 +1,5 @@
 import { IBaseUsecase } from "@common";
+
 import { FileRepositoryPort, FileStoragePort } from "../ports";
 
 export class DeleteFileUseCase implements IBaseUsecase {

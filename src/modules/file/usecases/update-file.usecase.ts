@@ -1,8 +1,10 @@
-import { IBaseUsecase } from "@common";
-import { FileEntity } from "../domain";
-import { FileRepositoryPort, FileStoragePort } from "../ports";
-import { UploadFileDto } from "../dto";
 import path from "path";
+
+import { IBaseUsecase } from "@common";
+
+import { FileEntity } from "../domain";
+import { UploadFileDto } from "../dto";
+import { FileRepositoryPort, FileStoragePort } from "../ports";
 
 export class UpdateFileUseCase implements IBaseUsecase {
   constructor(

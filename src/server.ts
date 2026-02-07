@@ -1,8 +1,8 @@
 // eslint-disable-next-line
 /// <reference path="./types/express.d.ts" />
 
-import { appConfig } from "@config";
 import { createApp } from "@app";
+import { appConfig } from "@config";
 import { checkDbConnection, initDatabase, pool } from "@db";
 
 async function start() {

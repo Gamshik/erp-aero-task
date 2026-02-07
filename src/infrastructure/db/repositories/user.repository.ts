@@ -1,6 +1,7 @@
 import { UserRepositoryPort, User } from "@user";
-import { pool } from "../mysql";
 import { ResultSetHeader, RowDataPacket } from "mysql2";
+
+import { pool } from "../mysql";
 
 export class UserRepository implements UserRepositoryPort {
   async findById(id: string): Promise<User | null> {

@@ -1,4 +1,5 @@
 import mysql from "mysql2/promise";
+
 import { dbEnv } from "./config/dbEnv";
 
 export const pool = mysql.createPool({

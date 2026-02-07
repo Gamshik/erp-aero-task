@@ -1,6 +1,7 @@
 import { IBaseUsecase } from "@common";
-import { FileRepositoryPort } from "../ports";
+
 import { FileEntity } from "../domain";
+import { FileRepositoryPort } from "../ports";
 
 export class GetFileInfoUseCase implements IBaseUsecase {
   constructor(private readonly fileRepository: FileRepositoryPort) {}

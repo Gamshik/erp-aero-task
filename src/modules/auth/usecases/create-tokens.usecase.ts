@@ -1,10 +1,11 @@
 import { IBaseUsecase } from "@common";
-import { TokensService } from "../services";
-import { TokenRepositoryPort } from "../ports";
-import { Token, TokensValue } from "../domain";
 import { authConfig } from "@config";
-import { v4 as uuidv4 } from "uuid";
 import ms from "ms";
+import { v4 as uuidv4 } from "uuid";
+
+import { Token, TokensValue } from "../domain";
+import { TokenRepositoryPort } from "../ports";
+import { TokensService } from "../services";
 
 export class CreateTokensUseCase implements IBaseUsecase {
   constructor(

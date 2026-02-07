@@ -1,4 +1,5 @@
 import { IBaseUsecase } from "@common";
+
 import { TokenRepositoryPort } from "../ports";
 
 export class LogoutUseCase implements IBaseUsecase {

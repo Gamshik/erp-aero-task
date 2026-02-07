@@ -1,7 +1,8 @@
-import { fileConfig } from "@config";
-import { FileStoragePort } from "@file";
 import fs from "fs/promises";
 import path from "path";
+
+import { fileConfig } from "@config";
+import { FileStoragePort } from "@file";
 
 export class FileStorageService implements FileStoragePort {
   private readonly uploadDir = path.resolve(

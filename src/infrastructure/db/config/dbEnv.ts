@@ -1,6 +1,7 @@
-import { z } from "zod";
-import dotenv from "dotenv";
 import path from "path";
+
+import dotenv from "dotenv";
+import { z } from "zod";
 
 const envFile = process.env.DOTENV_CONFIG_PATH || ".env.development";
 

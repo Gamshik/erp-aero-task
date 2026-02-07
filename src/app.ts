@@ -1,8 +1,3 @@
-import express from "express";
-import cookieParser from "cookie-parser";
-import cors from "cors";
-import { FileRepository, TokenRepository, UserRepository } from "@db";
-import { authMiddleware, validateMiddleware } from "@middlewares";
 import {
   AuthController,
   AuthFacade,
@@ -17,8 +12,7 @@ import {
   loginSchema,
   LogoutUseCase,
 } from "@auth";
-import { CreateUseCase, UserFacade } from "@user";
-import { FileStorageService } from "@file-storage";
+import { FileRepository, TokenRepository, UserRepository } from "@db";
 import {
   DeleteFileUseCase,
   FileController,
@@ -29,7 +23,13 @@ import {
   UpdateFileUseCase,
   UploadFileUseCase,
 } from "@file";
+import { FileStorageService } from "@file-storage";
+import { authMiddleware, validateMiddleware } from "@middlewares";
 import { upload } from "@multer";
+import { CreateUseCase, UserFacade } from "@user";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import express from "express";
 
 export function createApp() {
   const app = express();

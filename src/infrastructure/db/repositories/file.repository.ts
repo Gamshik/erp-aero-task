@@ -1,6 +1,7 @@
 import { FileEntity, FileRepositoryPort } from "@file";
-import { pool } from "../mysql";
 import { ResultSetHeader, RowDataPacket } from "mysql2";
+
+import { pool } from "../mysql";
 
 export class FileRepository implements FileRepositoryPort {
   async create(file: FileEntity): Promise<void> {

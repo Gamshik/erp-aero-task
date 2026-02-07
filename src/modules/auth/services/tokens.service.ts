@@ -1,9 +1,10 @@
-import { authConfig } from "@config";
-import { TokensValue } from "../domain";
 import { IJwtPayload } from "@common";
-import { v4 as uuidv4 } from "uuid";
+import { authConfig } from "@config";
 import jwt from "jsonwebtoken";
 import ms from "ms";
+import { v4 as uuidv4 } from "uuid";
+
+import { TokensValue } from "../domain";
 
 export class TokensService {
   generateToken(userId: string, sessionId: string): TokensValue {
