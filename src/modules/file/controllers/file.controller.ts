@@ -14,7 +14,8 @@ export class FileController {
         return;
       }
 
-      const userId = (req as any).user.id;
+      if (!req.user) throw new Error("Internal server error");
+      const userId = req.user.id;
 
       const file = await this.filePort.upload({
         userId,
@@ -44,7 +45,9 @@ export class FileController {
 
   public getInfo = async (req: Request, res: Response): Promise<void> => {
     try {
-      const id = req.params.id as string;
+      const id = req.params.id;
+      if (typeof id !== "string" || !id) throw new Error("Url is incorrect");
+
       const file = await this.filePort.getInfo(id);
       res.status(200).json(file);
     } catch (error: any) {
@@ -54,7 +57,9 @@ export class FileController {
 
   public download = async (req: Request, res: Response): Promise<void> => {
     try {
-      const id = req.params.id as string;
+      const id = req.params.id;
+      if (typeof id !== "string" || !id) throw new Error("Url is incorrect");
+
       const file = await this.filePort.getInfo(id);
       const absolutePath = this.fileStoragePort.getAbsolutePath(file.path);
 
@@ -66,8 +71,12 @@ export class FileController {
 
   public delete = async (req: Request, res: Response): Promise<void> => {
     try {
-      const id = req.params.id as string;
-      const userId = (req as any).user.id;
+      const id = req.params.id;
+      if (typeof id !== "string" || !id) throw new Error("Url is incorrect");
+
+      if (!req.user) throw new Error("Internal server error");
+      const userId = req.user.id;
+
       await this.filePort.delete(id, userId);
       res.status(200).json({ message: "File deleted successfully" });
     } catch (error: any) {
@@ -81,9 +90,13 @@ export class FileController {
         res.status(400).json({ error: "No new file provided" });
         return;
       }
-      const id = req.params.id as string;
 
-      const userId = (req as any).user.id;
+      const id = req.params.id;
+      if (typeof id !== "string" || !id) throw new Error("Url is incorrect");
+
+      if (!req.user) throw new Error("Internal server error");
+      const userId = req.user.id;
+
       const updatedFile = await this.filePort.update(id, {
         userId,
         originalname: req.file.originalname,

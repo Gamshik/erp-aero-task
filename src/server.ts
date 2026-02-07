@@ -1,3 +1,5 @@
+/// <reference path="./types/express.d.ts" />
+
 import { appConfig } from "@config";
 import { createApp } from "@app";
 import { checkDbConnection, initDatabase, pool } from "@db";

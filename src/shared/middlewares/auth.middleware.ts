@@ -7,7 +7,7 @@ export const authMiddleware =
   (tokenRepository: TokenRepositoryPort) =>
   async (req: Request, res: Response, next: NextFunction) => {
     const authHeader = req.headers.authorization;
-    if (!authHeader?.startsWith("Bearer "))
+    if (!authHeader || !authHeader.startsWith("Bearer "))
       return res.status(401).json({ error: "Unauthorized" });
 
     const accessToken = authHeader.split(" ")[1] ?? "";
@@ -25,7 +25,7 @@ export const authMiddleware =
           .status(401)
           .json({ error: "Session revoked. Please login again." });
 
-      (req as any).user = { id: decoded.sub };
+      req.user = { id: decoded.sub };
       next();
     } catch (error) {
       return res.status(401).json({ error: "Token expired or invalid" });

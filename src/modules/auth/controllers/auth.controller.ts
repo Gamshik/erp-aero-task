@@ -73,8 +73,8 @@ export class AuthController {
   };
 
   public info = async (req: Request, res: Response): Promise<void> => {
-    const userId = (req as any).user.id;
-
+    if (!req.user) throw new Error("Internal server error");
+    const userId = req.user.id;
     res.status(200).json({ id: userId });
   };
 
